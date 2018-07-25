@@ -7,24 +7,19 @@ logging.getLogger('flask_assistant').setLevel(logging.DEBUG)
 app = Flask(__name__)
 assist = Assistant(app, route='/')
 
-@assist.action('greeting')
-def greet_and_start():
-    speech = "Hey! Are you male or female?"
-    return ask(speech)
+@assist.action('give-emplyee')
+def retrieve_position():
+# if request.headers['Content-Type'] != 'application/json':
+#         print(request.headers['Content-Type'])
+#         return flask.jsonify(res='error'), 400
+#
+#     name = request.json["request"]["parameters"]
+    # ここにAPIを呼ぶ処理
+    name = "ゆきえ"
+    speech = name + "さんはカフェにいます。"
+    # speech = name　"さんは" time "ごろ"　position "にいました。"
 
-@assist.action("give-gender")
-def ask_for_color(gender):
-    if gender == 'male':
-        gender_msg = 'Sup bro!'
-    else:
-        gender_msg = 'Haay gurl!'
 
-    speech = gender_msg + ' What is your favorite color?'
-    return ask(speech)
-
-@assist.action('give-color', mapping={'color': 'sys.color'})
-def ask_for_season(color):
-    speech = 'Ok, {} is an okay color I guess'.format(color)
     return ask(speech)
 
 if __name__ == '__main__':

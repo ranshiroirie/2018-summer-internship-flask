@@ -15,21 +15,21 @@
 
 
 
-greeting:
+give-employee:
   UserSays:
   - こんにちは
-  - こんばんは
-  - おはよう
-  - やぁ
+  - give-employee
+  -
+  -
   Annotations:
-  - 
-  - 
+  -
+  -
   Events:
-  - 
+  -
   -
 give-gender:
   UserSays:
-  - 男性 
+  - 男性
   - 女性
   - 男
   - 女
@@ -40,7 +40,7 @@ give-gender:
   - 男: gender
   - 女: gender
   Events:
-  - 
+  -
   -
 give-color:
   UserSays:
@@ -52,6 +52,6 @@ give-color:
 
   Annotations:
   - 青: sys.color
-  - 赤: sys.color 
+  - 赤: sys.color
   Events:
-  - 
+  -

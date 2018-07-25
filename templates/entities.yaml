@@ -3,18 +3,18 @@
 #Format as below
 
 # entity_name:
-#  - entry1: list of synonyms 
-#  - entry2: list of synonyms 
+#  - entry1: list of synonyms
+#  - entry2: list of synonyms
 
 #For example:
 
 # drink:
-#  - water: ['aqua', 'h20'] 
-#  - coffee: ['joe', 'caffeine', 'espresso', 'late'] 
+#  - water: ['aqua', 'h20']
+#  - coffee: ['joe', 'caffeine', 'espresso', 'late']
 #  - soda: ['pop', 'coke']
 
 
 
-gender:
-- male: ['man', 'boy', 'guy', 'dude']
-- female: ['woman', 'girl', 'gal']
+employee:
+- ゆきえ　れん: ['れん', 'ゆきえさん', 'れん', 'ゆきえ']
+- きしもと　なおはる: ['きっしー', 'なおくん', 'なおはる']
