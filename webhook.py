@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify
 from flask_assistant import Assistant, ask, tell
 import logging
@@ -20,7 +21,7 @@ def retrieve_position():
  givenName =  splitName[1]
 
   # ここにAPIを呼ぶ処理
- baseUrl = "http://ec2-13-114-200-166.ap-northeast-1.compute.amazonaws.com/api" 
+ baseUrl = "http://18-summer-internship-demo.tk/api" 
  apiUrl = baseUrl + "/user/" + familyName + "/" + givenName + "/" + "position"
  result = requests.get(apiUrl)
  if result.status_code != 200:
@@ -34,4 +35,4 @@ def retrieve_position():
  return ask(speech)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
