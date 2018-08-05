@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify
 from flask_assistant import Assistant, ask, tell
-import logging
 import requests
 
-logging.getLogger('flask_assistant').setLevel(logging.DEBUG)
 
 app = Flask(__name__)
 assist = Assistant(app, route='/')
@@ -21,8 +19,7 @@ def retrieve_position():
  givenName =  splitName[1]
 
   # ここにAPIを呼ぶ処理
- #baseUrl = "http://18-summer-internship-demo.tk/api" 
- baseUrl = "http://127.0.0.1:8000/api" 
+ baseUrl = "http://18-summer-internship-demo.tk/api" 
 
  apiUrl = baseUrl + "/user/" + familyName + "/" + givenName + "/" + "position"
  result = requests.get(apiUrl)
@@ -30,7 +27,6 @@ def retrieve_position():
         return jsonify(res='error'), 400
 
  json = result.json()
- print(json)
  position = json["beacon"]["position"]
  speech = familyName + "さんは" + position + "にいます。"
 
@@ -56,13 +52,11 @@ def get_schedule():
  elif result.status_code != 200:
         return jsonify(res='error'), 400
  
- print(json)
  summary = json["summary"]
  start = json["event_start"]
  end = json["event_end"]
  speech = "直近の予定は" + summary + "開始時間" + start + "終了時間" + end + "です"
- print(speech)
- return ask(speech)
+ return tell(speech)
 
 if __name__ == '__main__':
     app.run()
