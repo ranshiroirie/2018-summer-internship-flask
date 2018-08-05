@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify
-from flask_assistant import Assistant, ask, tell
+from flask_assistant import Assistant, ask, tell, context_manager
 import requests
-
 
 app = Flask(__name__)
 assist = Assistant(app, route='/')
@@ -30,7 +29,7 @@ def retrieve_position():
  position = json["beacon"]["position"]
  speech = familyName + "さんは" + position + "にいます。"
 
- return tell(speech)
+ return ask(speech)
 
 @assist.action('give-date')
 def get_schedule():
@@ -38,7 +37,7 @@ def get_schedule():
         print(request.headers['Content-Type'])
         return jsonify(res='error'), 400
  # 日付のタイムゾーンをISO8601の日本時間に変換
- time = request.json["result"]["parameters"]["date-time"][0]
+ time = request.json["result"]["parameters"]["date-time"]
  if time[-1:] == 'Z':
         time = time[:-1]
 
@@ -48,15 +47,15 @@ def get_schedule():
  json = result.json()
  
  if result.status_code == 404:
-        return tell(json["message"])
+        return ask(json["message"])
  elif result.status_code != 200:
         return jsonify(res='error'), 400
  
  summary = json["summary"]
  start = json["event_start"]
  end = json["event_end"]
- speech = "直近の予定は" + summary + "開始時間" + start + "終了時間" + end + "です"
- return tell(speech)
+ speech = start + "から" + end + "に" +  summary + "の予定があります"
+ return ask(speech)
 
 if __name__ == '__main__':
     app.run()
