@@ -27,15 +27,15 @@ def retrieve_position():
  givenName =  splitName[1]
 
   # ここにAPIを呼ぶ処理
- baseUrl = "http://18-summer-internship-demo.tk/api" 
+ baseUrl = "https://www.team1-internship-asia-quest.net:80" 
 
- apiUrl = baseUrl + "/user/" + familyName + "/" + givenName + "/" + "position"
+ apiUrl = baseUrl + "/employee?family_name=" + familyName + "&given_name=" + givenName
  result = requests.get(apiUrl)
  if result.status_code != 200:
         return jsonify(res='error'), 400
 
  json = result.json()
- position = json["beacon"]["position"]
+ position = str(json[0]["position"]).decode('unicode-escape')
  speech = familyName + "さんは" + position + "にいます。"
 
  return ask(speech)
