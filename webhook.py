@@ -6,6 +6,15 @@ import requests
 app = Flask(__name__)
 assist = Assistant(app, route='/')
 
+@app.route('/')
+def index():
+    return "Hello, World!"
+
+@assist.action('trash')
+def search():
+    name = request.json["result"]["parameters"]["cities"]
+    return ask('確かに' + name)
+
 @assist.action('give-employee')
 def retrieve_position():
  if request.headers['Content-Type'] != "application/json; charset=UTF-8":
