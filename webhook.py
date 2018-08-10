@@ -35,8 +35,11 @@ def retrieve_position():
         return jsonify(res='error'), 400
 
  json = result.json()
- position = str(json[0]["position"]).decode('unicode-escape')
- speech = familyName + "さんは" + position + "にいます。"
+ position = str(json[0]["position"])
+ if position:
+	speech = familyName + "さんは" + position + "にいます。"
+ else:
+	speech = "すみません、居場所がよくわかりません。"
 
  return ask(speech)
 
